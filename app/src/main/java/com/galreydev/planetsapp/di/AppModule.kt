@@ -21,7 +21,7 @@ object AppModule {
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
             .baseUrl("https://swapi.dev/api/")
-            .client(getUnsafeOkHttpClient())
+            //.client(getUnsafeOkHttpClient())
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }

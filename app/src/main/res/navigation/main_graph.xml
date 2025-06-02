@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/loginFragment"
@@ -12,11 +12,26 @@
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_listPlanetsFragment"
-            app:destination="@id/listPlanetsFragment" />
+            app:destination="@id/listPlanetsFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/listPlanetsFragment"
         android:name="com.galreydev.planetsapp.presentation.ui.ListPlanetsFragment"
         android:label="fragment_list_planets"
         tools:layout="@layout/fragment_list_planets" />
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.galreydev.planetsapp.presentation.ui.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_splashFragment_to_listPlanetsFragment"
+            app:destination="@id/listPlanetsFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
 </navigation>
