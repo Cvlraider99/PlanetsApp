@@ -1,7 +1,10 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id ("com.google.dagger.hilt.android")
+    id("com.google.devtools.ksp")
     id("androidx.navigation.safeargs.kotlin")
+
 }
 
 android {
@@ -10,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "com.galreydev.planetsapp"
-        minSdk = 21
+        minSdk = 29
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
@@ -64,4 +67,6 @@ dependencies {
     implementation (libs.glide.transformations)
     implementation (libs.androidx.navigation.fragment.ktx)
     implementation (libs.androidx.navigation.ui.ktx)
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.android.compiler)
 }

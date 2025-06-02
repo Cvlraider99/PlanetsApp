@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">PlanetsApp</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="planet">Tierra</string>
+    <string name="boton_text">Iniciar Sesión</string>
+    <string name="apellido_materno">Apellido Materno</string>
+    <string name="apellido_paterno">Apellido Paterno</string>
+    <string name="nombre">Nombre</string>
+    <string name="fecha_nacimiento">Fecha de Nacimiento</string>
+    <string name="selecciona_pais">Selecciona tu país</string>
 </resources>
