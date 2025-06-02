@@ -3,13 +3,17 @@ package com.galreydev.planetsapp.presentation.ui
 import android.app.DatePickerDialog
 import android.icu.util.Calendar
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.galreydev.planetsapp.databinding.FragmentLoginBinding
+import com.galreydev.planetsapp.domain.model.User
+import com.galreydev.planetsapp.presentation.viewmodel.UserViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,6 +22,7 @@ class LoginFragment : Fragment() {
     private val binding: FragmentLoginBinding by lazy {
         FragmentLoginBinding.inflate(LayoutInflater.from(context), null, false)
     }
+    private val viewModel: UserViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,9 +39,21 @@ class LoginFragment : Fragment() {
                 showDatePicker()
             }
 
-
+            viewModel.users.observe(viewLifecycleOwner) { user ->
+                Log.d("Usuario", "se agrego $user")
+            }
 
             mbLogin.setOnClickListener {
+                val nuevoUsuario = User(
+                    etName.text.toString(),
+                    etApePaterno.text.toString(),
+                    etApMaterno.text.toString(),
+                    etFechaNacimiento.text.toString(),
+                    spnPais.selectedItem.toString(),
+                )
+
+                viewModel.addUser(nuevoUsuario)
+
                 findNavController().navigate(
                     LoginFragmentDirections.actionLoginFragmentToListPlanetsFragment()
                 )

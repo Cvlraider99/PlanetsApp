@@ -69,4 +69,9 @@ dependencies {
     implementation (libs.androidx.navigation.ui.ktx)
     implementation(libs.hilt.android)
     ksp(libs.hilt.android.compiler)
+
+    //room
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx) // Corutinas
+    ksp(libs.androidx.room.compiler)
 }
