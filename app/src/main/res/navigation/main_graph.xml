@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/detallePlanetFragment"
-        android:name="com.galreydev.planetsapp.DetallePlanetFragment"
+        android:name="com.galreydev.planetsapp.presentation.ui.DetallePlanetFragment"
         android:label="fragment_detalle_planet"
         tools:layout="@layout/fragment_detalle_planet">
         <argument

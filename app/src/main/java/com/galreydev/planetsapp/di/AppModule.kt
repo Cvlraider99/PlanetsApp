@@ -1,7 +1,9 @@
 package com.galreydev.planetsapp.di
 
+import com.galreydev.planetsapp.data.network.GetDetalleInterface
 import com.galreydev.planetsapp.data.network.GetPlanetsInterface
 import com.galreydev.planetsapp.data.network.getUnsafeOkHttpClient
+import com.galreydev.planetsapp.data.repository.DetallePlanetaRepository
 import com.galreydev.planetsapp.data.repository.PlanetsRepository
 import dagger.Module
 import dagger.Provides
@@ -36,5 +38,19 @@ object AppModule {
     @Provides
     fun providePlanetsRepository(apiService: GetPlanetsInterface): PlanetsRepository {
         return PlanetsRepository(apiService)
+    }
+
+
+    //Para el detalle del planeta
+    @Singleton
+    @Provides
+    fun providePlanetDetalleApiService(retrofit: Retrofit): GetDetalleInterface {
+        return retrofit.create(GetDetalleInterface::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun providePlanetDetalleRepository(apiService: GetDetalleInterface): DetallePlanetaRepository {
+        return DetallePlanetaRepository(apiService)
     }
 }

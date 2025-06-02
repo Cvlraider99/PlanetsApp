@@ -9,4 +9,10 @@
     <string name="nombre">Nombre</string>
     <string name="fecha_nacimiento">Fecha de Nacimiento</string>
     <string name="selecciona_pais">Selecciona tu país</string>
+    <string name="dummy_value">23</string>
+    <string name="title_rotation">Periodo de Rotación</string>
+    <string name="title_orbital">Periodo Orbital</string>
+    <string name="title_diametro">Diametro</string>
+    <string name="title_climate">Clima</string>
+    <string name="title_gravity">Gravedad</string>
 </resources>
