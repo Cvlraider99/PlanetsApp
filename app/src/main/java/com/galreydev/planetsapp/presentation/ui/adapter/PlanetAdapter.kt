@@ -12,7 +12,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.galreydev.planetsapp.data.model.Result
 import com.galreydev.planetsapp.databinding.ItemPlanetBinding
 
-class PlanetAdapter: ListAdapter<Result, PlanetAdapter.PlanetViewHolder>(PlanetDiffUtil()){
+class PlanetAdapter(private val onClick: (Result) -> Unit): ListAdapter<Result, PlanetAdapter.PlanetViewHolder>(PlanetDiffUtil()){
 
     inner class PlanetViewHolder(private val binding: ItemPlanetBinding): RecyclerView.ViewHolder(binding.root){
         fun bind(planet: Result){
@@ -23,6 +23,10 @@ class PlanetAdapter: ListAdapter<Result, PlanetAdapter.PlanetViewHolder>(PlanetD
                     .transition(DrawableTransitionOptions.withCrossFade())
                     .transform(CenterCrop(), RoundedCorners(20))
                     .into(ivPlanet)
+
+                root.setOnClickListener {
+                    onClick(planet)
+                }
             }
         }
     }

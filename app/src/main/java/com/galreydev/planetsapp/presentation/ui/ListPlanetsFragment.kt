@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.galreydev.planetsapp.databinding.FragmentListPlanetsBinding
 import com.galreydev.planetsapp.presentation.ui.adapter.PlanetAdapter
@@ -21,7 +22,14 @@ class ListPlanetsFragment : Fragment() {
     }
 
     private val planetViewModel: PlanetsViewModel by viewModels()
-    private val planetAdapter = PlanetAdapter()
+    private val planetAdapter = PlanetAdapter{ planet ->
+        findNavController().navigate(
+            ListPlanetsFragmentDirections.actionListPlanetsFragmentToDetallePlanetFragment(
+                urlInfo = planet.url
+            )
+        )
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

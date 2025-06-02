@@ -19,7 +19,11 @@
         android:id="@+id/listPlanetsFragment"
         android:name="com.galreydev.planetsapp.presentation.ui.ListPlanetsFragment"
         android:label="fragment_list_planets"
-        tools:layout="@layout/fragment_list_planets" />
+        tools:layout="@layout/fragment_list_planets" >
+        <action
+            android:id="@+id/action_listPlanetsFragment_to_detallePlanetFragment"
+            app:destination="@id/detallePlanetFragment" />
+    </fragment>
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.galreydev.planetsapp.presentation.ui.SplashFragment"
@@ -33,5 +37,15 @@
             android:id="@+id/action_splashFragment_to_listPlanetsFragment"
             app:destination="@id/listPlanetsFragment"
             app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/detallePlanetFragment"
+        android:name="com.galreydev.planetsapp.DetallePlanetFragment"
+        android:label="fragment_detalle_planet"
+        tools:layout="@layout/fragment_detalle_planet">
+        <argument
+            android:name="urlInfo"
+            app:argType="string"/>
+
     </fragment>
 </navigation>
