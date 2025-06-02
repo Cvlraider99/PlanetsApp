@@ -1,6 +1,8 @@
 package com.galreydev.planetsapp.presentation.ui
 
+import android.app.AlertDialog
 import android.app.DatePickerDialog
+import android.content.Context
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.util.Log
@@ -44,19 +46,31 @@ class LoginFragment : Fragment() {
             }
 
             mbLogin.setOnClickListener {
-                val nuevoUsuario = User(
-                    etName.text.toString(),
-                    etApePaterno.text.toString(),
-                    etApMaterno.text.toString(),
-                    etFechaNacimiento.text.toString(),
-                    spnPais.selectedItem.toString(),
-                )
 
-                viewModel.addUser(nuevoUsuario)
+                val name = etName.text?.toString()?.trim()
+                val apePaterno = etApePaterno.text?.toString()?.trim()
+                val apeMaterno = etApMaterno.text?.toString()?.trim()
+                val fechaNacimiento = etFechaNacimiento.text?.toString()?.trim()
+                val pais = spnPais.selectedItem.toString()
 
-                findNavController().navigate(
-                    LoginFragmentDirections.actionLoginFragmentToListPlanetsFragment()
-                )
+                if (name.isNullOrEmpty() || apePaterno.isNullOrEmpty() || apeMaterno.isNullOrEmpty() || fechaNacimiento.isNullOrEmpty())
+                    showInputDialog(requireContext())
+                else{
+                    val nuevoUsuario = User(
+                        name,
+                        apePaterno,
+                        apeMaterno,
+                        fechaNacimiento,
+                        pais,
+                    )
+
+                    viewModel.addUser(nuevoUsuario)
+
+                    findNavController().navigate(
+                        LoginFragmentDirections.actionLoginFragmentToListPlanetsFragment()
+                    )
+                }
+
             }
         }
     }
@@ -82,5 +96,15 @@ class LoginFragment : Fragment() {
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, countries)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spnPais.adapter = adapter
+    }
+
+    fun showInputDialog(context: Context) {
+
+        AlertDialog.Builder(context)
+            .setTitle("Por favor llena todos los campos")
+            .setPositiveButton("Aceptar") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
     }
 }
